@@ -1,0 +1,298 @@
+@import "./variables";
+@mixin flex-center($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@function rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+} // converts px to rem
+
+@mixin text-preset1 {
+  font-size: rem(32);
+  line-height: rem(42);
+  letter-spacing: 0px;
+}
+
+@mixin text-preset2 {
+  font-size: rem(24);
+  line-height: rem(32);
+  letter-spacing: 0px;
+}
+
+@mixin text-preset3 {
+  font-size: rem(18);
+  line-height: rem(24);
+  letter-spacing: 0px;
+}
+
+@mixin text-preset4 {
+  font-size: rem(16);
+  line-height: rem(20);
+  letter-spacing: 0px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+body {
+  padding-block: rem(133); // adds space top and bottom
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  background: linear-gradient(to right, $gradientstart, $gradientend);
+  color: $orange400;
+  /* Centering content vertically and horizontally */
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.password-display {
+  @include flex-center(column);
+}
+.title {
+  color: $grey600;
+  @include text-preset2;
+  margin-bottom: rem(32);
+}
+.password-container {
+  width: 100%;
+  min-width: rem(540);
+  @include flex-center(row);
+  justify-content: space-between;
+  color: $grey700;
+  background-color: $grey800;
+  margin-bottom: rem(24);
+  @include text-preset1;
+  padding: rem(19) rem(32);
+}
+
+.copy-container {
+  @include flex-center(row);
+}
+#copied-text {
+  margin-right: 1rem;
+  color: $green200;
+  @include text-preset3;
+  text-transform: uppercase;
+  display: none;
+}
+.copy-icon:hover,
+.copy-icon:focus {
+  outline: none;
+  filter: brightness(0) invert(1);
+  cursor: pointer;
+}
+
+.options-container {
+  background-color: $grey800;
+  padding: rem(24) rem(32);
+}
+.character-length-container {
+  @include flex-center(column);
+  margin-bottom: rem(32);
+  padding: 0;
+}
+.character-length-number {
+  width: 100%;
+  @include text-preset3;
+  @include flex-center(row);
+  justify-content: space-between;
+  color: $grey200;
+  margin-bottom: 1rem;
+  & output {
+    color: $green200;
+    @include text-preset1;
+  }
+}
+.slider {
+  -webkit-appearance: none; //Removes default styling
+  appearance: none; // Ensures consistent appearance across browsers
+  width: 100%;
+  height: 8px;
+  background: $grey850;
+}
+
+/* Chrome, Safari, Edge */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: rem(28);
+  height: rem(28);
+  background: $grey200;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Firefox */
+.slider::-moz-range-thumb {
+  width: rem(28);
+  height: rem(28);
+  background: $grey200;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb:active {
+  background: $grey850;
+  border: 2px solid $green200;
+}
+
+.slider::-moz-range-thumb:active {
+  background: $grey850;
+  border: 2px solid $green200;
+}
+
+.checkbox-options-container {
+  @include flex-center(column);
+  align-items: flex-start;
+  @include text-preset3;
+  margin-bottom: 2rem;
+
+  & .checkbox-item {
+    color: $grey200;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  & input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid $grey200;
+    background-color: none;
+    cursor: pointer;
+    position: relative;
+    &:hover,
+    &:focus {
+      border: 2px solid $green200;
+    }
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: $green200;
+    border-color: $green200;
+    background-image: url("../starter-code/assets/images/icon-check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+.strength-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $grey850;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.strength-label {
+  @include text-preset3;
+  color: $grey600;
+}
+.strength-value-container {
+  @include flex-center(row);
+}
+.strength-level {
+  @include text-preset2;
+  color: $grey200;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+.strength-bars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bar {
+  width: 10px;
+  height: 28px;
+  border: 2px solid $grey200;
+  background-color: transparent;
+}
+.generate-button {
+  width: 100%;
+  background-color: $green200;
+  color: $grey800;
+  @include text-preset3;
+  border: 2px solid $green200;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: rem(20.5) rem(177);
+  margin-bottom: rem(17);
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: $green200;
+    cursor: pointer;
+    border: 2px solid $green200;
+    .button-icon {
+      filter: invert(80%) sepia(58%) saturate(265%) hue-rotate(70deg)
+        brightness(104%) contrast(102%); //changes color of image
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-block: 4rem;
+  }
+  .password-container {
+    min-width: rem(343);
+  }
+  .title {
+    @include text-preset4;
+  }
+  .password-container {
+    margin-bottom: 1rem;
+    @include text-preset2;
+    padding: 1rem;
+  }
+  #copied-text {
+    margin-right: 0.5rem;
+    @include text-preset4;
+  }
+  .options-container {
+    padding: 1rem;
+  }
+  .character-length-number {
+    @include text-preset4;
+    & output {
+      @include text-preset2;
+    }
+  }
+  .checkbox-options-container {
+    @include text-preset4;
+    & .checkbox-item {
+      gap: 1rem;
+    }
+  }
+  .strength-container {
+    margin-bottom: 1rem;
+    padding: rem(14) rem(16.5);
+  }
+  .strength-label {
+    @include text-preset4;
+  }
+  .strength-level {
+    @include text-preset3;
+  }
+  .generate-button {
+    @include text-preset4;
+    gap: 1rem;
+    padding: rem(18) rem(103.45);
+    margin-bottom: 1rem;
+  }
+}
