@@ -18,15 +18,13 @@
 <body>
   <main>
     <div class="password-display">
-      <div class="title">
-        <p>Password Generator</p>
-      </div>
+      <h1 class="title">Password Generator</h1>
       <div class="settings-container">
         <div class="password-container">
           <p id="password">P4$5W0rD!</p>
           <div class="copy-container">
             <span id="copied-text">Copied</span>
-            <img src="assets/images/icon-copy.svg" alt="" class="copy-icon" tabindex="0">
+            <img src="assets/images/icon-copy.svg" alt="Copy password" class="copy-icon" tabindex="0">
           </div>
         </div>
         <div class="options-container">
@@ -37,7 +35,7 @@
               </p>
               <output id="character-length-number">0</output>
             </div>
-            <input type="range" min="5" max="15" value="0" class="slider" id="myRange">
+            <input type="range" min="5" max="15" value="0" class="slider" id="myRange" aria-label="Password length">
 
           </div>
           <form class="checkbox-options-container">
